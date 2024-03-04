@@ -21,5 +21,8 @@ function addOption(e) {
   <input @keyup.enter="addOption" placeholder="New option name" />
 </template>
 
-
-<style scoped></style>
+<style scoped>
+div, input {
+  grid-column: 1;
+}
+</style>

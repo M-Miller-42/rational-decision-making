@@ -15,4 +15,11 @@ const criteria = ref([])
 </template>
 
 <style scoped>
+main {
+  display: grid;
+  place-items: center;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(5em, auto);
+  gap: 0.2em;
+}
 </style>
