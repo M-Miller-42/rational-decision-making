@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "prepare": "husky install"
   },
   "dependencies": {
     "vue": "^3.4.15"
@@ -21,6 +22,8 @@
     "@vue/test-utils": "^2.4.4",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
+    "git-format-staged": "^3.1.1",
+    "husky": "^8.0.0",
     "jsdom": "^24.0.0",
     "prettier": "^3.0.3",
     "vite": "^5.0.11",
