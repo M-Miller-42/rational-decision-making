@@ -1,4 +1,6 @@
 <script setup>
+import CriterionType from './CriterionType.vue';
+
 defineProps({
   criteria: Array,
   options: Array
@@ -10,7 +12,7 @@ defineEmits(['added'])
 <template>
   <template v-for="criterion in criteria">
     <div class="criterion-name">{{ criterion }}</div>
-    <div v-for="_ in options.length">{{ criterion }}</div>
+    <CriterionType v-for="_ in options.length" :type="criterion" />
   </template>
   <button @click="$emit('added', 'Boolean')">+</button>
 </template>
