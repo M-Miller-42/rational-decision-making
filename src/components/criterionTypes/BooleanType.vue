@@ -1,7 +1,10 @@
-<script setup></script>
+<script setup>
+defineEmits(["change"])
+defineProps(["value"])
+</script>
 
 <template>
-  <input type="checkbox" @change="$emit('changed')" />
+  <input type="checkbox" :checked="value" @change="$emit('change', $event.target.checked)" />
 </template>
 
 <style scoped></style>
