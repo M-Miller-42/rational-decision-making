@@ -1,20 +1,20 @@
 <script setup>
-import CriterionType from './CriterionType.vue';
+import CriterionColumn from './CriterionColumn.vue';
 
 defineProps({
-  criteria: Array,
-  options: Array
+  criteria: Array
 })
 
 defineEmits(['added'])
 </script>
-
 <template>
-  <template v-for="criterion in criteria">
-    <div class="criterion-name">{{ criterion }}</div>
-    <CriterionType v-for="_ in options.length" :type="criterion" />
+  <template v-for="criterion in criteria" :key="criterion.id">
+    <div class="criterion-name">{{ criterion.name }}
+      <span>{{ criterion.type }}</span>
+    </div>
+    <CriterionColumn :criterion />
   </template>
-  <button @click="$emit('added', 'Boolean')">+</button>
+  <button @click="$emit('added', 'myname', 'Boolean')">+</button>
 </template>
 
 <style scoped>
