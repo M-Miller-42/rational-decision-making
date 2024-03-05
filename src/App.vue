@@ -12,6 +12,7 @@ const criteria = ref([])
     <OptionsColumn :options @added="(newValue) => options.push(newValue)" />
     <CriteriaTable :options :criteria @added="(newValue) => criteria.push(newValue)" />
   </main>
+  <pre>State: {{ JSON.stringify({ options, criteria }, null, 2) }}</pre>
 </template>
 
 <style scoped>
