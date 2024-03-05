@@ -14,7 +14,6 @@ function addOption(e) {
 }
 </script>
 
-
 <template>
   <div>Options</div>
   <div v-for="option in options">{{ option }}</div>
