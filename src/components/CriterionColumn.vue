@@ -1,16 +1,10 @@
 <script setup>
 import { inject } from 'vue'
-import BooleanType from './criterionTypes/BooleanType.vue'
-import PercentageType from './criterionTypes/PercentageType.vue'
+import { availableTypes } from './criterionTypes/AvailableTypes'
 
 defineProps({
   criterion: {}
 })
-
-const availableTypes = {
-  Boolean: BooleanType,
-  Percent: PercentageType
-}
 
 const updateValue = inject('updateValue')
 </script>
