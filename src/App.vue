@@ -44,7 +44,7 @@ provide('addCriterion', addCriterion)
 <template>
   <main>
     <OptionsColumn :options @added="addOption" />
-    <CriteriaTable :criteria />
+    <CriteriaTable :criteria :optionsScores />
     <ScoresColumn :optionsScores />
   </main>
   <pre>State: {{ JSON.stringify({ options, criteria, optionsScores }, null, 2) }}</pre>

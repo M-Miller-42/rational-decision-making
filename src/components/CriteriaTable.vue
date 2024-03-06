@@ -4,7 +4,8 @@ import CriterionColumn from './CriterionColumn.vue'
 import NewCriterionDialog from './NewCriterionDialog.vue'
 
 defineProps({
-  criteria: Array
+  criteria: { type: Array, required: true },
+  optionsScores: { type: Array, required: true }
 })
 
 const showDialog = ref(false)
@@ -18,7 +19,7 @@ const addCriterion = inject('addCriterion')
       {{ criterion.name }}
       <div>{{ criterion.type }}</div>
     </div>
-    <CriterionColumn :criterion />
+    <CriterionColumn :criterion :optionsScores />
   </template>
   <button @click="showDialog = true">+</button>
   <NewCriterionDialog :showDialog @close="showDialog = false" @added="addCriterion" />
