@@ -17,7 +17,10 @@ function addOption(e) {
 
 <template>
   <div>Options</div>
-  <div v-for="optionIndex of order" :key="optionIndex">{{ options[optionIndex] }}</div>
+  <TransitionGroup>
+    <div v-for="optionIndex of order" :key="optionIndex">{{ options[optionIndex] }}</div>
+  </TransitionGroup>
+
   <input @keyup.enter="addOption" placeholder="New option name" />
 </template>
 

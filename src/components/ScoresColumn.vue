@@ -28,7 +28,9 @@ function sortByScoreSums(a, b) {
     Scores
     <div class="'small">Sort ▼</div>
   </div>
-  <div v-for="optionIndex of order" :key="optionIndex">{{ scoreSums[optionIndex] }}</div>
+  <TransitionGroup>
+    <div v-for="optionIndex of order" :key="optionIndex">{{ scoreSums[optionIndex] }}</div>
+  </TransitionGroup>
 </template>
 
 <style scoped>

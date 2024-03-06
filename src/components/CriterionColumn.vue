@@ -12,14 +12,16 @@ const updateValue = inject('updateValue')
 </script>
 
 <template>
-  <div v-for="optionIndex of order" :key="optionIndex">
-    <component
-      :is="availableTypes[criterion.type]"
-      :value="criterion.values[optionIndex]"
-      @change="(value) => updateValue(value, optionIndex, criterion.id)"
-    />
-    <div class="small dimmed">Points: {{ optionsScores[optionIndex][criterion.id] }}</div>
-  </div>
+  <TransitionGroup>
+    <div v-for="optionIndex of order" :key="optionIndex">
+      <component
+        :is="availableTypes[criterion.type]"
+        :value="criterion.values[optionIndex]"
+        @change="(value) => updateValue(value, optionIndex, criterion.id)"
+      />
+      <div class="small dimmed">Points: {{ optionsScores[optionIndex][criterion.id] }}</div>
+    </div>
+  </TransitionGroup>
 </template>
 
 <style scoped></style>
