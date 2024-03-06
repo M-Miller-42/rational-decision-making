@@ -17,7 +17,7 @@ const updateValue = inject('updateValue')
       :value
       @change="(value) => updateValue(value, optionIndex, criterion.id)"
     />
-    <div>Points: {{ optionsScores[optionIndex][criterion.id] }}</div>
+    <div class="small dimmed">Points: {{ optionsScores[optionIndex][criterion.id] }}</div>
   </div>
 </template>
 

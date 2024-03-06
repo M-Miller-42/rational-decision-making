@@ -1,14 +1,12 @@
 @import './base.css';
 
+body {
+  background: linear-gradient(#202075, black);
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
 }
 
 @media (min-width: 1024px) {
@@ -16,4 +14,57 @@
     display: flex;
     place-items: center;
   }
+}
+
+main {
+  gap: 0.7em;
+  padding: 1em;
+
+  & > button,
+  input:not([type]) {
+    width: 100%;
+    height: 100%;
+  }
+
+  & > input {
+    padding: 0.8em;
+  }
+
+  & > div {
+    background: white;
+    place-self: stretch;
+    border-radius: 0.5em;
+    padding: 0.8em;
+  }
+}
+
+button,
+input:not([type]),
+select,
+option {
+  background: white;
+  border-radius: var(--border-radius);
+  border-color: var(--accent);
+}
+
+.small {
+  font-size: 0.8em;
+}
+
+.dimmed {
+  color: gray;
+}
+
+.active,
+input,
+button,
+select {
+  &:hover {
+    background-color: var(--active-bg);
+    box-shadow: 0 0 0.5em var(--active-bg);
+  }
+}
+
+.v-move {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }

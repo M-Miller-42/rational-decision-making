@@ -50,21 +50,14 @@ provide('addCriterion', addCriterion)
   <pre>State: {{ JSON.stringify({ options, criteria, optionsScores }, null, 2) }}</pre>
 </template>
 
-<style>
+<style scoped>
 main {
   display: grid;
   place-items: center;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(5em, auto);
-  gap: 0.7em;
-  background: gainsboro;
-  padding: 1em;
+  grid-auto-columns: minmax(7em, auto);
 }
-
-main > div {
-  background: white;
-  place-self: stretch;
-  border-radius: 0.5em;
-  padding: 0.8em;
+pre {
+  color: white;
 }
 </style>

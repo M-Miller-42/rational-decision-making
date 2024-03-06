@@ -21,7 +21,9 @@ function addOption(e) {
 </template>
 
 <style scoped>
-div, input {
+div,
+input {
   grid-column: 1;
+  font-weight: bold;
 }
 </style>

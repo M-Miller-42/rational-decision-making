@@ -18,5 +18,6 @@ const scoreSums = computed(() =>
 <style scoped>
 .header {
   grid-row: 1;
+  font-weight: bold;
 }
 </style>

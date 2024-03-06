@@ -17,11 +17,11 @@ const addCriterion = inject('addCriterion')
   <template v-for="criterion in criteria" :key="criterion.id">
     <div class="criterion-name">
       {{ criterion.name }}
-      <div>{{ criterion.type }}</div>
+      <div class="small dimmed">{{ criterion.type }}</div>
     </div>
     <CriterionColumn :criterion :optionsScores />
   </template>
-  <button @click="showDialog = true">+</button>
+  <button @click="showDialog = true" class="header">+</button>
   <NewCriterionDialog :showDialog @close="showDialog = false" @added="addCriterion" />
 </template>
 
@@ -29,5 +29,8 @@ const addCriterion = inject('addCriterion')
 .criterion-name,
 button {
   grid-row: 1;
+}
+button {
+  font-size: 2em;
 }
 </style>
