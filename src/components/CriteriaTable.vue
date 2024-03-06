@@ -1,10 +1,13 @@
 <script setup>
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import CriterionColumn from './CriterionColumn.vue'
+import NewCriterionDialog from './NewCriterionDialog.vue'
 
 defineProps({
   criteria: Array
 })
+
+const showDialog = ref(false)
 
 const addCriterion = inject('addCriterion')
 </script>
@@ -13,11 +16,12 @@ const addCriterion = inject('addCriterion')
   <template v-for="criterion in criteria" :key="criterion.id">
     <div class="criterion-name">
       {{ criterion.name }}
-      <span>{{ criterion.type }}</span>
+      <div>{{ criterion.type }}</div>
     </div>
     <CriterionColumn :criterion />
   </template>
-  <button @click="addCriterion('myname', 'Boolean')">+</button>
+  <button @click="showDialog = true">+</button>
+  <NewCriterionDialog :showDialog @close="showDialog = false" @added="addCriterion" />
 </template>
 
 <style scoped>
