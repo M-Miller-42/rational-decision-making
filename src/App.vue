@@ -5,14 +5,19 @@ import CriteriaTable from './components/CriteriaTable.vue'
 
 const options = ref([])
 const criteria = ref([])
-let criteriaCounter = 0;
+let criteriaCounter = 0
 
 function updateValue(value, optionIndex, criterionIndex) {
   criteria.value[criterionIndex].values[optionIndex] = value
 }
 
 function addCriterion(name, type) {
-  criteria.value.push({ id: criteriaCounter++, name, type, values: Array(options.value.length).fill() })
+  criteria.value.push({
+    id: criteriaCounter++,
+    name,
+    type,
+    values: Array(options.value.length).fill()
+  })
 }
 
 function addOption(name) {
@@ -21,12 +26,13 @@ function addOption(name) {
 }
 
 provide('updateValue', updateValue)
+provide('addCriterion', addCriterion)
 </script>
 
 <template>
   <main>
     <OptionsColumn :options @added="addOption" />
-    <CriteriaTable :criteria @added="addCriterion" />
+    <CriteriaTable :criteria />
   </main>
   <pre>State: {{ JSON.stringify({ options, criteria }, null, 2) }}</pre>
 </template>

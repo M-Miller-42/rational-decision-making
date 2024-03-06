@@ -1,20 +1,23 @@
 <script setup>
-import CriterionColumn from './CriterionColumn.vue';
+import { inject } from 'vue'
+import CriterionColumn from './CriterionColumn.vue'
 
 defineProps({
   criteria: Array
 })
 
-defineEmits(['added'])
+const addCriterion = inject('addCriterion')
 </script>
+
 <template>
   <template v-for="criterion in criteria" :key="criterion.id">
-    <div class="criterion-name">{{ criterion.name }}
+    <div class="criterion-name">
+      {{ criterion.name }}
       <span>{{ criterion.type }}</span>
     </div>
     <CriterionColumn :criterion />
   </template>
-  <button @click="$emit('added', 'myname', 'Boolean')">+</button>
+  <button @click="addCriterion('myname', 'Boolean')">+</button>
 </template>
 
 <style scoped>
