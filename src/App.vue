@@ -7,6 +7,7 @@ import { scoreMapping } from './components/criterionTypes/AvailableTypes'
 
 const options = ref([])
 const criteria = ref([])
+const order = ref([])
 let criteriaCounter = 0
 
 const optionsScores = computed(() => {
@@ -34,7 +35,13 @@ function addCriterion(name, type) {
 
 function addOption(name) {
   options.value.push(name)
+  order.value.push(options.value.length - 1)
   criteria.value.forEach((c) => c.values.push(undefined))
+}
+
+function sort(sortBy) {
+  // Make a copy to avoid mutations during sorting
+  order.value = order.value.slice().sort(sortBy)
 }
 
 provide('updateValue', updateValue)
@@ -43,11 +50,11 @@ provide('addCriterion', addCriterion)
 
 <template>
   <main>
-    <OptionsColumn :options @added="addOption" />
-    <CriteriaTable :criteria :optionsScores />
-    <ScoresColumn :optionsScores />
+    <OptionsColumn :options @added="addOption" :order />
+    <CriteriaTable :criteria :optionsScores :order />
+    <ScoresColumn :optionsScores :order @sort="sort" />
   </main>
-  <pre>State: {{ JSON.stringify({ options, criteria, optionsScores }, null, 2) }}</pre>
+  <pre>State: {{ JSON.stringify({ options, criteria, order, optionsScores }, null, 2) }}</pre>
 </template>
 
 <style scoped>
