@@ -6,7 +6,7 @@ defineProps(['value'])
 <template>
   <div>
     <div>{{ value }}%</div>
-    <input type="range" min="0" max="100" @change="$emit('change', $event.target.value)" />
+    <input type="range" min="0" max="100" @input="$emit('change', $event.target.value)" />
   </div>
 </template>
 
