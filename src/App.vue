@@ -1,11 +1,23 @@
 <script setup>
-import { ref, provide } from 'vue'
+import { ref, provide, computed } from 'vue'
 import OptionsColumn from './components/OptionsColumn.vue'
 import CriteriaTable from './components/CriteriaTable.vue'
+import ScoresColumn from './components/ScoresColumn.vue'
+import { scoreMapping } from './components/criterionTypes/AvailableTypes'
 
 const options = ref([])
 const criteria = ref([])
 let criteriaCounter = 0
+
+const optionsScores = computed(() => {
+  return options.value.map((_, i) => {
+    return criteria.value.map((criterion) => {
+      const scoreMap = scoreMapping[criterion.type]
+      const score = scoreMap(criterion.values[i])
+      return score
+    })
+  })
+})
 
 function updateValue(value, optionIndex, criterionIndex) {
   criteria.value[criterionIndex].values[optionIndex] = value
@@ -33,8 +45,9 @@ provide('addCriterion', addCriterion)
   <main>
     <OptionsColumn :options @added="addOption" />
     <CriteriaTable :criteria />
+    <ScoresColumn :optionsScores />
   </main>
-  <pre>State: {{ JSON.stringify({ options, criteria }, null, 2) }}</pre>
+  <pre>State: {{ JSON.stringify({ options, criteria, optionsScores }, null, 2) }}</pre>
 </template>
 
 <style>
