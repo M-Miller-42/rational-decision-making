@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { availableTypes } from './criterionTypes/AvailableTypes'
 
 defineProps({
-  showDialog: Boolean
+  show: Boolean
 })
 const emit = defineEmits(['added', 'close'])
 
@@ -23,8 +23,12 @@ function addAndClose() {
 </script>
 
 <template>
-  <Teleport to="body" v-if="showDialog">
-    <div class="modal-mask" @click.self="$emit('close')" @keyup.esc="$emit('close')">
+  <Teleport to="body" v-if="show">
+    <div
+      class="modal-mask"
+      @click.self="$emit('close')"
+      @keyup.esc="$emit('close')"
+    >
       <form class="modal-container" @submit="addAndClose">
         <h1>New criterion</h1>
 
@@ -35,7 +39,11 @@ function addAndClose() {
         <label>
           Type
           <select v-model="type" required>
-            <option v-for="type in Object.keys(availableTypes)" :value="type" :key="type">
+            <option
+              v-for="type in Object.keys(availableTypes)"
+              :value="type"
+              :key="type"
+            >
               {{ type }}
             </option>
           </select>
