@@ -13,7 +13,7 @@ const updateValue = inject('updateValue')
 
 <template>
   <TransitionGroup>
-    <div v-for="optionIndex of order" :key="optionIndex">
+    <div v-for="optionIndex of order" :key="optionIndex" class="center-vertically">
       <component
         :is="availableTypes[criterion.type]"
         :value="criterion.values[optionIndex]"

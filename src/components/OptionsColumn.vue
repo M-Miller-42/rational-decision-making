@@ -16,9 +16,11 @@ function addOption(e) {
 </script>
 
 <template>
-  <div>Options</div>
+  <div class="option">Options</div>
   <TransitionGroup>
-    <div v-for="optionIndex of order" :key="optionIndex">{{ options[optionIndex] }}</div>
+    <div v-for="optionIndex of order" :key="optionIndex" class="option">
+      {{ options[optionIndex] }}
+    </div>
   </TransitionGroup>
 
   <input @keyup.enter="addOption" placeholder="New option name" />
@@ -29,5 +31,8 @@ div,
 input {
   grid-column: 1;
   font-weight: bold;
+}
+input {
+  width: 12em;
 }
 </style>

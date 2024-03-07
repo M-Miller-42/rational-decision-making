@@ -27,6 +27,9 @@ const addCriterion = inject('addCriterion')
 </template>
 
 <style scoped>
+.criterion-name {
+  font-weight: bold;
+}
 .criterion-name,
 button {
   grid-row: 1;

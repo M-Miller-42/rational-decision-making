@@ -62,8 +62,9 @@ main {
   display: grid;
   place-items: center;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(7em, auto);
+  grid-auto-columns: minmax(8em, auto);
 }
+
 pre {
   color: white;
 }
