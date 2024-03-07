@@ -2,14 +2,16 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  optionsScores: { type: Array, required: true },
+  weightedOptionsScores: { type: Array, required: true },
   order: { type: Array, required: true }
 })
 
 defineEmits(['sort'])
 
 const scoreSums = computed(() =>
-  props.optionsScores.map((optionScore) => optionScore.reduce((sum, score) => sum + score, 0))
+  props.weightedOptionsScores.map((optionScore) =>
+    optionScore.reduce((sum, score) => sum + score, 0)
+  )
 )
 
 const isSorted = computed(() =>

@@ -10,15 +10,21 @@ const criteria = ref([])
 const order = ref([])
 let criteriaCounter = 0
 
-const optionsScores = computed(() => {
-  return options.value.map((_, i) => {
-    return criteria.value.map((criterion) => {
+const optionsScores = computed(() =>
+  options.value.map((_, i) =>
+    criteria.value.map((criterion) => {
       const scoreMap = scoreMapping[criterion.type]
       const score = scoreMap(criterion.values[i])
       return score
     })
-  })
-})
+  )
+)
+
+const weightedOptionsScores = computed(() =>
+  optionsScores.value.map((scores) =>
+    scores.map((score, critIndex) => criteria.value[critIndex].weight * score)
+  )
+)
 
 function updateValue(value, optionIndex, criterionIndex) {
   criteria.value[criterionIndex].values[optionIndex] = value
@@ -29,6 +35,7 @@ function addCriterion(name, type) {
     id: criteriaCounter++,
     name,
     type,
+    weight: 1,
     values: Array(options.value.length).fill()
   })
 }
@@ -52,7 +59,7 @@ provide('addCriterion', addCriterion)
   <main>
     <OptionsColumn :options @added="addOption" :order />
     <CriteriaTable :criteria :optionsScores :order />
-    <ScoresColumn :optionsScores :order @sort="sort" />
+    <ScoresColumn :weightedOptionsScores :order @sort="sort" />
   </main>
   <pre>State: {{ JSON.stringify({ options, criteria, order, optionsScores }, null, 2) }}</pre>
 </template>
