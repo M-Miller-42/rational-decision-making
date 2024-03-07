@@ -1,11 +1,12 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { availableTypes } from './criterionTypes/AvailableTypes'
+import DialogTemplate from './DialogTemplate.vue'
 
 defineProps({
   show: Boolean
 })
-const emit = defineEmits(['added', 'close'])
+const emit = defineEmits(['added'])
 
 const name = ref('')
 const type = ref('')
@@ -15,71 +16,39 @@ const isValid = computed(() => {
   return !!value
 })
 
-function addAndClose() {
+function addNewCriterion() {
   emit('added', name.value, type.value)
   name.value = ''
-  emit('close')
 }
 </script>
 
 <template>
-  <Teleport to="body" v-if="show">
-    <div
-      class="modal-mask"
-      @click.self="$emit('close')"
-      @keyup.esc="$emit('close')"
-    >
-      <form class="modal-container" @submit="addAndClose">
-        <h1>New criterion</h1>
-
-        <label>
-          Name
-          <input type="text" v-model="name" required />
-        </label>
-        <label>
-          Type
-          <select v-model="type" required>
-            <option
-              v-for="type in Object.keys(availableTypes)"
-              :value="type"
-              :key="type"
-            >
-              {{ type }}
-            </option>
-          </select>
-        </label>
-        <button class="modal-default-button" :disabled="!isValid">OK</button>
-      </form>
-    </div>
-  </Teleport>
+  <DialogTemplate :show @submit="addNewCriterion">
+    <template #heading>New criterion</template>
+    <label>
+      Name
+      <input type="text" v-model="name" required />
+    </label>
+    <label>
+      Type
+      <select v-model="type" required>
+        <option
+          v-for="typeName of Object.keys(availableTypes)"
+          :value="typeName"
+          :key="typeName"
+        >
+          {{ typeName }}
+        </option>
+      </select>
+    </label>
+    <template #footer>
+      <button class="modal-default-button" :disabled="!isValid">OK</button>
+    </template>
+  </DialogTemplate>
 </template>
 
 <style scoped>
 label {
   display: block;
-}
-
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-}
-
-.modal-container {
-  width: 300px;
-  margin: auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-}
-
-.modal-default-button {
-  float: right;
 }
 </style>
