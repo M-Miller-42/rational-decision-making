@@ -1,6 +1,15 @@
 # rational-decision-making
 
-This template should help get you started developing with Vue 3 in Vite.
+**Work in Progress**
+
+A tool to find the best option by evaluating them under different criteria
+
+## Usage
+
+1. Create a list of options and alternatives
+2. Add critera (with weights)
+3. Rate how well each option fulfills the criteria
+4. Sort the options by score
 
 ## Recommended IDE Setup
 
