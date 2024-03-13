@@ -1,6 +1,6 @@
 # rational-decision-making
 
-**Work in Progress**
+**Work in Progress: [Online Demo](https://m-miller-42.github.io/rational-decision-making/)**
 
 A tool to find the best option by evaluating them under different criteria
 
